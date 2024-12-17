@@ -89,6 +89,25 @@ public class MaxBeautyArray {
         return maxBeauty;
     }
 
+    public int SlidingWindowMaxBeauty(int[] nums, int k) {
+        // 將數組排序，便於後續窗口操作
+        Arrays.sort(nums);
+
+        int left = 0; // 左指針
+        int maxCount = 0; // 最大美麗值（最大重疊元素個數）
+
+        // 遍歷右指針
+        for (int right = 0; right < nums.length; right++) {
+            // 當窗口範圍超出 2 * k 時，縮小窗口
+            while (nums[right] - nums[left] > 2 * k) {
+                left++;
+            }
+            // 計算窗口內元素個數
+            maxCount = Math.max(maxCount, right - left + 1);
+        }
+
+        return maxCount;
+    }
 
 
     public static void main(String[] args) {
@@ -101,7 +120,8 @@ public class MaxBeautyArray {
         int k = 2;
         System.out.println("k: " + Integer.toString(k));
 
-        System.out.println("Beauty value: " + solution.maximumBeauty(numbers, k)); // Output: 4
+        //System.out.println("Beauty value: " + solution.maximumBeauty(numbers, k)); // Output: 4
+        System.out.println("Beauty value: " + Integer.toString(solution.SlidingWindowMaxBeauty(numbers, k)));
     }
             /*
          *  
