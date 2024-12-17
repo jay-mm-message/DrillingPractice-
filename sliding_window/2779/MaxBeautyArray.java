@@ -54,6 +54,11 @@ public class MaxBeautyArray {
             }
             //計算目前的美麗值
             maxBeauty = Math.max(maxBeauty, right - left);
+            System.out.print("Math.max(" + Integer.toString(maxBeauty));
+            System.out.print(", (right):" + Integer.toString(right));
+            System.out.print(" - (left):" + Integer.toString(left));
+            System.out.print(")");
+            System.out.println();
         }
 
         return maxBeauty;
@@ -88,8 +93,38 @@ public class MaxBeautyArray {
 
     public static void main(String[] args) {
         MaxBeautyArray solution = new MaxBeautyArray();
-        int[] numbers = new int[]{1, 3, 5, 2};
+        int[] numbers = new int[]{4, 6, 1, 2};
+        System.out.print("int[] number:");
+        for(int n : numbers) { 
+            System.out.print(Integer.toString(n) + " ");
+        }
         int k = 2;
+        System.out.println("k: " + Integer.toString(k));
+
         System.out.println("Beauty value: " + solution.maximumBeauty(numbers, k)); // Output: 4
     }
+            /*
+         *  
+            int[] number:4 6 1 2 k: 2
+            [2,6][4,8][-1,3][0,4]
+            [-1,3][0,4][2,6][4,8]
+            right = left = -2147483648
+            right=> -2147483648
+            [-1, 3]right=> -2147483648
+            interval[0] > right=> 3 ,left=> -1
+            Math.max(4, (right):3 - (left):-1)
+            right=> 3
+            [0, 4]right=> 3
+            Math.max interval[0]=> 0, left=> 0
+            Math.max(4, (right):3 - (left):0)
+            right=> 3
+            [2, 6]right=> 3
+            Math.max interval[0]=> 2, left=> 2
+            Math.max(4, (right):3 - (left):2)
+            right=> 3
+            [4, 8]right=> 3
+            interval[0] > right=> 8 ,left=> 4
+            Math.max(4, (right):8 - (left):4)
+            Beauty value: 4
+         */
 }
